@@ -41,15 +41,23 @@ class App extends React.Component  {
         })
 
       };
-      const handleInputChange = (index, event) => {
-        const values = [...this.state.names];
-        if (event.target.name === "firstName") {
-          values[index].firstName = event.target.value;
-        } else {
-          values[index].lastName = event.target.value;
-        }
+      const handleInputChange = (indexs,index, event) => {
+        // const values = [...this.state.names];
+        // if (event.target.name === "firstName") {
+        //   values[indexs].data.firstName = event.target.value;
+        // } else {
+        //   values[index].lastName = event.target.value;
+        // }
     
-        this.setState({names:values});
+        // this.setState({names:values});
+        // let val = [{firstName:'kk',lastName:''}];
+        // let data = this.state.names[indexs].data[index];
+        // this.setState({
+        //   names: update(this.state.names, {[indexs]: {data: {$set: val}}})
+        // })
+        this.setState({names: update(this.state.names, 
+          { [indexs]: { data: { [index]: { firstName: { $set: 'z' } } } } }
+      )});
       };
     
       const OnhandleAddFields = () => {
@@ -123,7 +131,7 @@ class App extends React.Component  {
       id="firstName"
       name="firstName"
       value={inputField.firstName}
-      onChange={event => handleInputChange(index, event)}
+      onChange={event => handleInputChange(indexs,index, event)}
     />
   </div>
   <h1>{index}</h1>
