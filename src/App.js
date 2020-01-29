@@ -52,10 +52,10 @@ class App extends React.Component  {
         this.setState({names:values});
       };
 
-      const handleAddFields = (index) => {
+      const handleAddFields = (indexs) => {
+        console.log(indexs);
         const values = [...this.state.names];
-        console.log(values[index].data);
-        let value = values[index].data;
+        let value = values[indexs].data;
         value.push({ firstName: '', lastName: '' });
         console.log(values);
 
@@ -67,7 +67,9 @@ class App extends React.Component  {
         values.splice(index, 1);
         this.setState({names:values});
       };
-    let name = this.state.names.map((inputField,index) => {
+    let name = this.state.names.map((inputField,indexs) => {
+      console.log(indexs);
+      let value = indexs;
       return(
       <div>
       <h1>Dynamic Form Fields in React</h1>
@@ -83,6 +85,7 @@ class App extends React.Component  {
                   value={this.state.name}
                   onChange={event => handleInputChangeState( event)}
                 /></div>
+                <h1>{indexs}</h1>
                 <div className="form-group col-sm-2">
                 <button
                   className="btn btn-link"
@@ -94,11 +97,68 @@ class App extends React.Component  {
                 <button
                   className="btn btn-link"
                   type="button"
-                  onClick={() => OnhandleAddFields()}
+                  onClick={() => OnhandleAddFields(indexs)}
                 >
                   +
                 </button>
-              </div></div></div>
+              </div></div>
+              {
+                
+                this.state.names[indexs].data.map((inputField, index) => (
+<React.Fragment key={`${inputField}~${index}`}>
+  <div className="form-group col-sm-6">
+    <label htmlFor="firstName">First Name</label>
+    <input
+      type="text"
+      className="form-control"
+      id="firstName"
+      name="firstName"
+      value={inputField.firstName}
+      onChange={event => handleInputChange(index, event)}
+    />
+  </div>
+  <h1>{index}</h1>
+  <div className="form-group col-sm-4">
+    <label htmlFor="lastName">Last Name</label>
+    <input
+      type="text"
+      className="form-control"
+      id="lastName"
+      name="lastName"
+      value={inputField.lastName}
+      onChange={event => handleInputChange(index, event)}
+    />
+  </div>
+  <div className="form-group col-sm-2">
+    <button
+      className="btn btn-link"
+      type="button"
+      onClick={() => handleRemoveFields(index)}
+    >
+      -
+    </button>
+    <button
+      className="btn btn-link"
+      type="button"
+      onClick={() => handleAddFields(indexs)}
+    >
+      +
+    </button>
+  </div>
+</React.Fragment>
+))}
+
+<div className="submit-button">
+<button
+className="btn btn-primary mr-2"
+type="submit"
+onSubmit={handleSubmit}
+>
+Save
+</button>
+</div>
+<br/>
+              </div>
       )
               
             
@@ -107,60 +167,7 @@ return (
 <div>
    {name}
   
-          {this.state.names[0].data.map((inputField, index) => (
-
-            <React.Fragment key={`${inputField}~${index}`}>
-              <div className="form-group col-sm-6">
-                <label htmlFor="firstName">First Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="firstName"
-                  name="firstName"
-                  value={inputField.firstName}
-                  onChange={event => handleInputChange(index, event)}
-                />
-              </div>
-              <div className="form-group col-sm-4">
-                <label htmlFor="lastName">Last Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="lastName"
-                  name="lastName"
-                  value={inputField.lastName}
-                  onChange={event => handleInputChange(index, event)}
-                />
-              </div>
-              <div className="form-group col-sm-2">
-                <button
-                  className="btn btn-link"
-                  type="button"
-                  onClick={() => handleRemoveFields(index)}
-                >
-                  -
-                </button>
-                <button
-                  className="btn btn-link"
-                  type="button"
-                  onClick={() => handleAddFields(index)}
-                >
-                  +
-                </button>
-              </div>
-            </React.Fragment>
-          ))}
-       
-        <div className="submit-button">
-          <button
-            className="btn btn-primary mr-2"
-            type="submit"
-            onSubmit={handleSubmit}
-          >
-            Save
-          </button>
-        </div>
-        <br/>
+         
 <pre>
  {JSON.stringify(this.state, null, 2)}
 </pre>
