@@ -1,5 +1,6 @@
 // import React, { Component } from "react";
 import * as React from 'react'
+import update from 'react-addons-update';
 
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -23,19 +24,22 @@ class App extends React.Component  {
         console.log("inputFields", this.state);
       };
       const handleInputChangeState = ( event,indexs) => {
-        let values = [...this.state.names];
-        let value = {...values[indexs]};
-        console.log(value);
-        if (event.target.name === "busName") {
-          value.name = "kk"
-        } else {
-          values.no = event.target.value;
-        }
-        console.log(value.name);
-        values[indexs] = value;
-        this.setState({values
-        });
-        // this.setState({names:values});
+        // let values = [...this.state.names];
+        // let value = {...values[indexs]};
+        // console.log(value);
+        // if (event.target.name === "busName") {
+        //   value.name = "kk"
+        // } else {
+        //   values.no = event.target.value;
+        // }
+        // console.log(value.name);
+        // values[indexs] = value;
+        // this.setState({values
+        // });
+        this.setState({
+          names: update(this.state.names, {[indexs]: {name: {$set: event.target.value}}})
+        })
+
       };
       const handleInputChange = (index, event) => {
         const values = [...this.state.names];
@@ -74,8 +78,7 @@ class App extends React.Component  {
         this.setState({names:values});
       };
     let name = this.state.names.map((inputField,indexs) => {
-      console.log(indexs);
-      let value = indexs;
+      
       return(
       <div>
       <h1>Dynamic Form Fields in React</h1>
@@ -154,15 +157,7 @@ class App extends React.Component  {
 </React.Fragment>
 ))}
 
-<div className="submit-button">
-<button
-className="btn btn-primary mr-2"
-type="submit"
-onSubmit={handleSubmit}
->
-Save
-</button>
-</div>
+
 <br/>
               </div>
       )
@@ -173,7 +168,15 @@ return (
 <div>
    {name}
   
-         
+   <div className="submit-button">
+<button
+className="btn btn-primary mr-2"
+type="submit"
+onClick={(event) => handleSubmit(event)}
+>
+Save
+</button>
+</div>      
 <pre>
  {JSON.stringify(this.state, null, 2)}
 </pre>
