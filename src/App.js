@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 class App extends React.Component  {
   state={
-    name:'',no:'',
+    name:'',
     names:[
      {name:"",data:[{ firstName: '', lastName: '' }]
     }
@@ -22,14 +22,20 @@ class App extends React.Component  {
         e.preventDefault();
         console.log("inputFields", this.state);
       };
-      const handleInputChangeState = ( event) => {
-        let values = this.state.name;
+      const handleInputChangeState = ( event,indexs) => {
+        let values = [...this.state.names];
+        let value = {...values[indexs]};
+        console.log(value);
         if (event.target.name === "busName") {
-          values = event.target.value;
+          value.name = "kk"
         } else {
           values.no = event.target.value;
         }
-        this.setState({name:values});
+        console.log(value.name);
+        values[indexs] = value;
+        this.setState({values
+        });
+        // this.setState({names:values});
       };
       const handleInputChange = (index, event) => {
         const values = [...this.state.names];
@@ -82,8 +88,8 @@ class App extends React.Component  {
                   className="form-control"
                   id="busName"
                   name="busName"
-                  value={this.state.name}
-                  onChange={event => handleInputChangeState( event)}
+                  value={this.state.names[indexs].name}
+                  onChange={event => handleInputChangeState( event,indexs)}
                 /></div>
                 <h1>{indexs}</h1>
                 <div className="form-group col-sm-2">
