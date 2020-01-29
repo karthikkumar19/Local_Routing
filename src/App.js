@@ -18,82 +18,76 @@ class App extends React.Component  {
   
     render(){
      
-    
+    //Submit data method!!
       const handleSubmit = e => {
         e.preventDefault();
         console.log("inputFields", this.state);
       };
       const handleInputChangeState = ( event,indexs) => {
-        // let values = [...this.state.names];
-        // let value = {...values[indexs]};
-        // console.log(value);
-        // if (event.target.name === "busName") {
-        //   value.name = "kk"
-        // } else {
-        //   values.no = event.target.value;
-        // }
-        // console.log(value.name);
-        // values[indexs] = value;
-        // this.setState({values
-        // });
         this.setState({
           names: update(this.state.names, {[indexs]: {name: {$set: event.target.value}}})
         })
 
       };
+
+
+      //Updating firstname and lastname Method!!
       const handleInputChange = (indexs,index, event) => {
-        // const values = [...this.state.names];
-        // if (event.target.name === "firstName") {
-        //   values[indexs].data.firstName = event.target.value;
-        // } else {
-        //   values[index].lastName = event.target.value;
-        // }
-    
-        // this.setState({names:values});
-        // let val = [{firstName:'kk',lastName:''}];
-        // let data = this.state.names[indexs].data[index];
-        // this.setState({
-        //   names: update(this.state.names, {[indexs]: {data: {$set: val}}})
-        // })
-        this.setState({names: update(this.state.names, 
-          { [indexs]: { data: { [index]: { firstName: { $set: 'z' } } } } }
-      )});
+        if(event.target.name === 'firstName'){
+          this.setState({names: update(this.state.names, 
+            { [indexs]: { data: { [index]: { firstName: { $set: event.target.value } } } } }
+        )});
+        }
+        else{
+          this.setState({names: update(this.state.names, 
+            { [indexs]: { data: { [index]: { lastName: { $set: event.target.value } } } } }
+        )});
+        }
+       
       };
     
+      //Pushing Bus data Method!!
       const OnhandleAddFields = () => {
         const values = [...this.state.names];
-        console.log(values);
         values.push({name:"",data:[{ firstName: '', lastName: '' }]
       });
-        console.log(values);
-
         this.setState({names:values});
       };
 
+      //Popping Bus data Method!!
+      const OnhandleRemoveFields = (indexs) => {
+        const values = [...this.state.names];
+        values.splice(indexs, 1);
+        this.setState({names:values});
+      };
+
+
+      //Pushing firstName and LastName data Method!!
       const handleAddFields = (indexs) => {
-        console.log(indexs);
         const values = [...this.state.names];
         let value = values[indexs].data;
         value.push({ firstName: '', lastName: '' });
-        console.log(values);
 
         this.setState({names:values});
       };
     
-      const handleRemoveFields = index => {
+
+      //Popping firstName and lastName data method!!
+      const handleRemoveFields = (indexs,index) => {
         const values = [...this.state.names];
-        values.splice(index, 1);
+        let value = values[indexs].data;
+        value.splice(index, 1);
         this.setState({names:values});
       };
-    let name = this.state.names.map((inputField,indexs) => {
-      
+
+
+    let name = this.state.names.map((inputField,indexs) => { 
       return(
       <div>
-      <h1>Dynamic Form Fields in React</h1>
       {/* <form onSubmit={handleSubmit}> */}
-      <div className="form-group col-sm-6">
+      <div className="form-group col-md-6">
         <div className="form-row">
-        <label htmlFor="BusName">Bus Name</label>
+        <label htmlFor="BusName" className="col-sm-4">Bus Name</label>
                 <input
                   type="text"
                   className="form-control"
@@ -102,12 +96,11 @@ class App extends React.Component  {
                   value={this.state.names[indexs].name}
                   onChange={event => handleInputChangeState( event,indexs)}
                 /></div>
-                <h1>{indexs}</h1>
-                <div className="form-group col-sm-2">
+                <div className="form-group col-sm-4">
                 <button
                   className="btn btn-link"
                   type="button"
-                  onClick={() => handleRemoveFields()}
+                  onClick={() => OnhandleRemoveFields(indexs)}
                 >
                   -
                 </button>
@@ -119,8 +112,8 @@ class App extends React.Component  {
                   +
                 </button>
               </div></div>
+
               {
-                
                 this.state.names[indexs].data.map((inputField, index) => (
 <React.Fragment key={`${inputField}~${index}`}>
   <div className="form-group col-sm-6">
@@ -134,7 +127,6 @@ class App extends React.Component  {
       onChange={event => handleInputChange(indexs,index, event)}
     />
   </div>
-  <h1>{index}</h1>
   <div className="form-group col-sm-4">
     <label htmlFor="lastName">Last Name</label>
     <input
@@ -143,14 +135,14 @@ class App extends React.Component  {
       id="lastName"
       name="lastName"
       value={inputField.lastName}
-      onChange={event => handleInputChange(index, event)}
+      onChange={event => handleInputChange(indexs,index, event)}
     />
   </div>
   <div className="form-group col-sm-2">
     <button
       className="btn btn-link"
       type="button"
-      onClick={() => handleRemoveFields(index)}
+      onClick={() => handleRemoveFields(indexs,index)}
     >
       -
     </button>
@@ -164,24 +156,19 @@ class App extends React.Component  {
   </div>
 </React.Fragment>
 ))}
-
-
 <br/>
-              </div>
-      )
-              
-            
+  </div>
+      )         
     });
 return (
 <div>
+<h1>Add Bus Data</h1>
    {name}
-  
-   <div className="submit-button">
+  <div className="submit-button">
 <button
 className="btn btn-primary mr-2"
 type="submit"
-onClick={(event) => handleSubmit(event)}
->
+onClick={(event) => handleSubmit(event)}>
 Save
 </button>
 </div>      
