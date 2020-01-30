@@ -9,8 +9,9 @@ import "bootstrap/dist/css/bootstrap.css";
 class App extends React.Component  {
   state={
     name:'',
+    no:'',
     names:[
-     {name:"",data:[{ firstName: '', lastName: '' }]
+     {stopname:"",data:[{ time: '', fare: '' }]
     }
   ]
   }
@@ -18,6 +19,18 @@ class App extends React.Component  {
   
     render(){
      
+//input of busname and no
+
+const handlenameno = event =>{
+  event.preventDefault();
+  if(event.target.name === "busname"){
+    this.setState({name:event.target.value});
+  }
+  else if(event.target.name === "busno"){
+    this.setState({no:event.target.value});
+  }
+}
+
     //Submit data method!!
       const handleSubmit = e => {
         e.preventDefault();
@@ -25,7 +38,7 @@ class App extends React.Component  {
       };
       const handleInputChangeState = ( event,indexs) => {
         this.setState({
-          names: update(this.state.names, {[indexs]: {name: {$set: event.target.value}}})
+          names: update(this.state.names, {[indexs]: {stopname: {$set: event.target.value}}})
         })
 
       };
@@ -33,14 +46,14 @@ class App extends React.Component  {
 
       //Updating firstname and lastname Method!!
       const handleInputChange = (indexs,index, event) => {
-        if(event.target.name === 'firstName'){
+        if(event.target.name === 'time'){
           this.setState({names: update(this.state.names, 
-            { [indexs]: { data: { [index]: { firstName: { $set: event.target.value } } } } }
+            { [indexs]: { data: { [index]: { time: { $set: event.target.value } } } } }
         )});
         }
         else{
           this.setState({names: update(this.state.names, 
-            { [indexs]: { data: { [index]: { lastName: { $set: event.target.value } } } } }
+            { [indexs]: { data: { [index]: { fare: { $set: event.target.value } } } } }
         )});
         }
        
@@ -49,7 +62,7 @@ class App extends React.Component  {
       //Pushing Bus data Method!!
       const OnhandleAddFields = () => {
         const values = [...this.state.names];
-        values.push({name:"",data:[{ firstName: '', lastName: '' }]
+        values.push({stopname:"",data:[{ time: '', fare: '' }]
       });
         this.setState({names:values});
       };
@@ -66,7 +79,7 @@ class App extends React.Component  {
       const handleAddFields = (indexs) => {
         const values = [...this.state.names];
         let value = values[indexs].data;
-        value.push({ firstName: '', lastName: '' });
+        value.push({ time: '', fare: '' });
 
         this.setState({names:values});
       };
@@ -87,13 +100,13 @@ class App extends React.Component  {
       {/* <form onSubmit={handleSubmit}> */}
       <div className="form-group col-md-6">
         <div className="form-row">
-        <label htmlFor="BusName" className="col-sm-4">Bus Name</label>
+        <label htmlFor="StopName" className="col-sm-4">Stop Name</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="busName"
-                  name="busName"
-                  value={this.state.names[indexs].name}
+                  id="stopName"
+                  name="stopName"
+                  value={this.state.names[indexs].stopname}
                   onChange={event => handleInputChangeState( event,indexs)}
                 /></div>
                 <div className="form-group col-sm-4">
@@ -117,24 +130,24 @@ class App extends React.Component  {
                 this.state.names[indexs].data.map((inputField, index) => (
 <React.Fragment key={`${inputField}~${index}`}>
   <div className="form-group col-sm-6">
-    <label htmlFor="firstName">First Name</label>
+    <label htmlFor="time">Time</label>
     <input
       type="text"
       className="form-control"
-      id="firstName"
-      name="firstName"
-      value={inputField.firstName}
+      id="time"
+      name="time"
+      value={inputField.time}
       onChange={event => handleInputChange(indexs,index, event)}
     />
   </div>
   <div className="form-group col-sm-4">
-    <label htmlFor="lastName">Last Name</label>
+    <label htmlFor="fare">Fare</label>
     <input
       type="text"
       className="form-control"
-      id="lastName"
-      name="lastName"
-      value={inputField.lastName}
+      id="fare"
+      name="fare"
+      value={inputField.fare}
       onChange={event => handleInputChange(indexs,index, event)}
     />
   </div>
@@ -163,6 +176,9 @@ class App extends React.Component  {
 return (
 <div>
 <h1>Add Bus Data</h1>
+<input name="busname" type="text" value={this.state.name} placeholder="enter busname" onChange={(event) => handlenameno(event)} />
+<input name="busno" type="text" value={this.state.no} placeholder="enter busno" onChange={(event) => handlenameno(event)} />
+
    {name}
   <div className="submit-button">
 <button
