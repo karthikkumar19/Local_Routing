@@ -53,14 +53,16 @@ state={
     }
 
     render(){
-        let name = <h1>hello</h1>
+        let name = ''
 if(this.state.data.length > '1'){
          name =  this.state.data.map((bus,index) => (
             <div>
                 <h1>{bus.stopname}</h1>
                 {
                     bus.data.map((data,index) => (
-                        <p>{data.time}</p>
+                        <div>
+                       <h4>Time:- {data.time} Fare:-{data.fare}</h4>
+                       </div>
                     ))
                 }
                 </div>
