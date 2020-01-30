@@ -1,7 +1,7 @@
 // import React, { Component } from "react";
 import * as React from 'react'
 import update from 'react-addons-update';
-
+import axios from './axios_orders';
 import "bootstrap/dist/css/bootstrap.css";
 
 
@@ -34,6 +34,18 @@ const handlenameno = event =>{
     //Submit data method!!
       const handleSubmit = e => {
         e.preventDefault();
+        // const formData = {};
+        // console.log(this.state);
+        // for (let formElementIdentifier in this.state) {
+        //     formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
+        // }
+        // console.log(formData);
+        axios.post( '/buses.json', this.state )
+        .then( response => {
+          console.log(response.data);
+        } )
+        .catch( error => {
+        } );
         console.log("inputFields", this.state);
       };
       const handleInputChangeState = ( event,indexs) => {
