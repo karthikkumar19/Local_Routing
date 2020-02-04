@@ -8,19 +8,41 @@ state={
     data:[],
     Startingpoint:'',
     Destination:'',
-   
+    suggestions:[]
 }
+items = ['Periyar','Anagar','Pykara','Tpk'];
 // componentDidMount(event){
 //     this.searchPage(event,"48","","");
 // }
 
 updateInput(event){
-    let name = event.target.value;
-    let Startingpoint = this.state.Startingpoint;
-    Startingpoint = name;
-    this.setState({Startingpoint:Startingpoint});
+    let value = event.target.value;
+    let suggestions = [];
+    if(value.length > 0){
+        const regex = new RegExp(value,'i');
+        suggestions = this.items.sort().filter(v => regex.test(v));
     }
-
+    this.setState({suggestions:suggestions});
+    // let Startingpoint = this.state.Startingpoint;
+    // Startingpoint = name;
+    // this.setState({Startingpoint:Startingpoint});
+    }
+renderSuggestions () {
+    const suggestions = this.state.suggestions;
+    if(suggestions.length === 0){
+        return null;
+    }else{
+        return(
+            <ul>
+                {this.state.suggestions.map((item) => 
+                    <li>
+                        {item}
+                    </li>
+                )}
+            </ul>
+        )
+    }
+}
     updatesecInput(event){
         let name = event.target.value;
         let Destination = this.state.Destination;
@@ -106,6 +128,7 @@ if(this.state.data.length > '1'){
                     <input type="text" placeholder="enter the Destination name" onChange={(event) => this.updatesecInput(event)}></input>
                 <button onClick={(event) => this.searchPage(event,"48",this.state.Startingpoint,this.state.Destination)} >Search</button>
                     </form>    
+                    {this.renderSuggestions()}
                 {name}
             </div>
         )
