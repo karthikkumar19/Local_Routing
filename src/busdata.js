@@ -22,11 +22,15 @@ updateInput(event){
         const regex = new RegExp(value,'i');
         suggestions = this.items.sort().filter(v => regex.test(v));
     }
-    this.setState({suggestions:suggestions});
+    this.setState({suggestions:suggestions,Startingpoint:value});
     // let Startingpoint = this.state.Startingpoint;
     // Startingpoint = name;
     // this.setState({Startingpoint:Startingpoint});
     }
+
+suggestionSelected = (value) => {
+    this.setState({Startingpoint:value,suggestions:[]});
+}
 renderSuggestions () {
     const suggestions = this.state.suggestions;
     if(suggestions.length === 0){
@@ -35,7 +39,7 @@ renderSuggestions () {
         return(
             <ul>
                 {this.state.suggestions.map((item) => 
-                    <li>
+                    <li onClick={() => this.suggestionSelected(item)}>
                         {item}
                     </li>
                 )}
@@ -124,7 +128,7 @@ if(this.state.data.length > '1'){
             <div>
                 <h1>Search your Bus</h1>
                 <form  >
-                    <input type="text" placeholder="enter the Starting Point name" onChange={(event) => this.updateInput(event)}></input>
+                    <input type="text" value={this.state.Startingpoint} placeholder="enter the Starting Point name" onChange={(event) => this.updateInput(event)}></input>
                     <input type="text" placeholder="enter the Destination name" onChange={(event) => this.updatesecInput(event)}></input>
                 <button onClick={(event) => this.searchPage(event,"48",this.state.Startingpoint,this.state.Destination)} >Search</button>
                     </form>    
