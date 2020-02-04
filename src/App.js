@@ -10,8 +10,8 @@ class App extends React.Component  {
 render(){
   return(
     <div>
-{/* <Addbusdata/> */}
-<Busdata/>
+ {/* <Addbusdata/>  */}
+ <Busdata/> 
     </div>
   )
 }

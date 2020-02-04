@@ -9,7 +9,7 @@ state={
     name:'',
     no:'',
     names:[
-     {stopname:"",data:[{ time: '', fare: '' }]
+     {stopname:"",data:[{ time: '', busno: '' }]
     }
   ]
   }
@@ -63,7 +63,7 @@ const handlenameno = event =>{
         }
         else{
           this.setState({names: update(this.state.names, 
-            { [indexs]: { data: { [index]: { fare: { $set: event.target.value } } } } }
+            { [indexs]: { data: { [index]: { busno: { $set: event.target.value } } } } }
         )});
         }
        
@@ -72,7 +72,7 @@ const handlenameno = event =>{
       //Pushing Bus data Method!!
       const OnhandleAddFields = () => {
         const values = [...this.state.names];
-        values.push({stopname:"",data:[{ time: '', fare: '' }]
+        values.push({stopname:"",data:[{ time: '', busno: '' }]
       });
         this.setState({names:values});
       };
@@ -89,7 +89,7 @@ const handlenameno = event =>{
       const handleAddFields = (indexs) => {
         const values = [...this.state.names];
         let value = values[indexs].data;
-        value.push({ time: '', fare: '' });
+        value.push({ time: '', busno: '' });
 
         this.setState({names:values});
       };
@@ -151,12 +151,12 @@ const handlenameno = event =>{
     />
   </div>
   <div className="form-group col-sm-4">
-    <label htmlFor="fare">Fare</label>
+    <label htmlFor="fare">Busno</label>
     <input
       type="text"
       className="form-control"
-      id="fare"
-      name="fare"
+      id="busno"
+      name="busno"
       value={inputField.fare}
       onChange={event => handleInputChange(indexs,index, event)}
     />

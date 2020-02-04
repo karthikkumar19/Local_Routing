@@ -10,8 +10,8 @@ state={
     Destination:'',
    
 }
-// componentDidMount(){
-//     this.searchPage();
+// componentDidMount(event){
+//     this.searchPage(event,"48","","");
 // }
 
 updateInput(event){
@@ -69,6 +69,8 @@ updateInput(event){
         ));
         console.log(slice);
           }
+        }, error => {
+            console.error(error);
         })
         this.setst(slice);
         // setTimeout( this.setst(), 5000);
@@ -85,7 +87,7 @@ if(this.state.data.length > '1'){
                 {
                     bus.data.map((data,index) => (
                         <div>
-                       <h4>Time:- {data.time} Fare:-{data.fare}</h4>
+                       <h4>Time:- {data.time} BusNo:-{data.busno}</h4>
                        </div>
                     ))
                 }
