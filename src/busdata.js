@@ -8,7 +8,7 @@ state={
     data:[],
     Startingpoint:'',
     Destination:'',
-    suggestions:[]
+    suggestions1:[],suggestions2:[]
 }
 items = ['Periyar','Anagar','Pykara','Tpk'];
 // componentDidMount(event){
@@ -23,27 +23,48 @@ updateInput(event){
         suggestions = this.items.sort().filter(v => regex.test(v));
     }
     if(event.target.name === "start"){
-        this.setState({suggestions:suggestions,Startingpoint:value});
+        this.setState({suggestions1:suggestions,Startingpoint:value});
     }else{
-        this.setState({suggestions:suggestions,Destination:value});
+        this.setState({suggestions2:suggestions,Destination:value});
     }
     // let Startingpoint = this.state.Startingpoint;
     // Startingpoint = name;
     // this.setState({Startingpoint:Startingpoint});
     }
 
-suggestionSelected = (value) => {
-    this.setState({Startingpoint:value,suggestions:[]});
+suggestionSelected1 = (value) => {
+    this.setState({Startingpoint:value,suggestions1:[]});
 }
-renderSuggestions () {
-    const suggestions = this.state.suggestions;
+
+suggestionSelected2 = (value) => {
+    this.setState({Destination:value,suggestions2:[]});
+}
+renderSuggestions1 () {
+    const suggestions = this.state.suggestions1;
     if(suggestions.length === 0){
         return null;
     }else{
         return(
             <ul>
-                {this.state.suggestions.map((item) => 
-                    <li onClick={() => this.suggestionSelected(item)}>
+                {this.state.suggestions1.map((item) => 
+                    <li onClick={() => this.suggestionSelected1(item)}>
+                        {item}
+                    </li>
+                )}
+            </ul>
+        )
+    }
+}
+
+renderSuggestions2 () {
+    const suggestions = this.state.suggestions2;
+    if(suggestions.length === 0){
+        return null;
+    }else{
+        return(
+            <ul>
+                {this.state.suggestions2.map((item) => 
+                    <li onClick={() => this.suggestionSelected2(item)}>
                         {item}
                     </li>
                 )}
@@ -107,7 +128,7 @@ renderSuggestions () {
         let name = ''
 if(this.state.data.length > '1'){
          name =  this.state.data.map((bus,index) => (
-            <div >
+            <div  >
                 <h1>{bus.stopname}</h1>
                 {
                     bus.data.map((data,index) => (
@@ -129,11 +150,11 @@ if(this.state.data.length > '1'){
                 <div>
                 <div className={classes.AutoCompleteText}>
                     <input type="text" name="start" value={this.state.Startingpoint} placeholder="Enter the Starting Point name" onChange={(event) => this.updateInput(event)}></input>
-                    {this.renderSuggestions()} 
+                    {this.renderSuggestions1()} 
                 </div>
                 <div className={classes.AutoCompleteText}>
                     <input name="stop" type="text" value={this.state.Destination} placeholder="Enter the Destination name" onChange={(event) => this.updateInput(event)}></input>
-                    {this.renderSuggestions()} 
+                    {this.renderSuggestions2()} 
                 </div>               
                 <button className={classes.Button} onClick={(event) => this.searchPage(event,"48",this.state.Startingpoint,this.state.Destination)} >Search</button>
                 </div>
