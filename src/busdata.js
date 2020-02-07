@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import firebase from './firebase';
-
+import classes from './Autocompletetext.module.css';
 
 class busdata extends React.Component{
 
@@ -22,7 +22,11 @@ updateInput(event){
         const regex = new RegExp(value,'i');
         suggestions = this.items.sort().filter(v => regex.test(v));
     }
-    this.setState({suggestions:suggestions,Startingpoint:value});
+    if(event.target.name === "start"){
+        this.setState({suggestions:suggestions,Startingpoint:value});
+    }else{
+        this.setState({suggestions:suggestions,Destination:value});
+    }
     // let Startingpoint = this.state.Startingpoint;
     // Startingpoint = name;
     // this.setState({Startingpoint:Startingpoint});
@@ -47,12 +51,7 @@ renderSuggestions () {
         )
     }
 }
-    updatesecInput(event){
-        let name = event.target.value;
-        let Destination = this.state.Destination;
-        Destination = name;
-        this.setState({Destination});
-        }
+   
 
  setst = (data) => {
     this.setState({data:data});
@@ -108,7 +107,7 @@ renderSuggestions () {
         let name = ''
 if(this.state.data.length > '1'){
          name =  this.state.data.map((bus,index) => (
-            <div>
+            <div >
                 <h1>{bus.stopname}</h1>
                 {
                     bus.data.map((data,index) => (
@@ -125,15 +124,23 @@ if(this.state.data.length > '1'){
        
 
         return(
-            <div>
+            <div  >
                 <h1>Search your Bus</h1>
-                <form  >
-                    <input type="text" value={this.state.Startingpoint} placeholder="enter the Starting Point name" onChange={(event) => this.updateInput(event)}></input>
-                    <input type="text" placeholder="enter the Destination name" onChange={(event) => this.updatesecInput(event)}></input>
-                <button onClick={(event) => this.searchPage(event,"48",this.state.Startingpoint,this.state.Destination)} >Search</button>
-                    </form>    
-                    {this.renderSuggestions()}
-                {name}
+                <div>
+                <div className={classes.AutoCompleteText}>
+                    <input type="text" name="start" value={this.state.Startingpoint} placeholder="Enter the Starting Point name" onChange={(event) => this.updateInput(event)}></input>
+                    {this.renderSuggestions()} 
+                </div>
+                <div className={classes.AutoCompleteText}>
+                    <input name="stop" type="text" value={this.state.Destination} placeholder="Enter the Destination name" onChange={(event) => this.updateInput(event)}></input>
+                    {this.renderSuggestions()} 
+                </div>               
+                <button className={classes.Button} onClick={(event) => this.searchPage(event,"48",this.state.Startingpoint,this.state.Destination)} >Search</button>
+                </div>
+                
+              <div className={classes.Data}>
+              {name}
+              </div>  
             </div>
         )
     }
