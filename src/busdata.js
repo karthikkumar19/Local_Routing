@@ -108,12 +108,28 @@ renderSuggestions2 () {
             }
         }
         console.log(ind2);
-         slice = stop.slice(ind1,ind2);
+        if(ind1>ind2){
+            console.log("greater");
+            let temp = ind1;
+            ind1 = ind2;
+            ind2 = temp;
+            ind1=  Number(ind1) - 1;
+            ind2=  Number(ind2) + 1;
+            console.log(ind1,ind2);
+            slice = stop.slice(ind1,ind2);
           console.log(slice);
           slice.map((page,index) => (
             console.log(page.stopname)
         ));
         console.log(slice);
+        }else{
+            slice = stop.slice(ind1,ind2);
+            console.log(slice);
+            slice.map((page,index) => (
+              console.log(page.stopname)
+          ));
+          console.log(slice);
+        }  
           }
         }, error => {
             console.error(error);
