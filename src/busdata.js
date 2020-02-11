@@ -108,7 +108,7 @@ renderSuggestions2 () {
             }
         }
         console.log(ind2);
-        if(ind1>ind2){
+        if(ind1>=ind2 ){
             console.log("greater");
             let temp = ind1;
             ind1 = ind2;
