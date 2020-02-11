@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import firebase from './firebase';
-import classes from './Autocompletetext.module.css';
+import classes from './Autocompletetext.module.scss';
 
 class busdata extends React.Component{
 
@@ -62,7 +62,7 @@ renderSuggestions2 () {
         return null;
     }else{
         return(
-            <ul>
+            <ul >
                 {this.state.suggestions2.map((item) => 
                     <li onClick={() => this.suggestionSelected2(item)}>
                         {item}
@@ -164,7 +164,7 @@ if(this.state.data.length > '1'){
             <div  className={classes.Wrapper} >
                 <h1>Search your Bus</h1>
                 <div className={classes.AutoCompleteText}>
-                    <input type="text" name="start" value={this.state.Startingpoint} placeholder="Enter the Starting Point name" onChange={(event) => this.updateInput(event)}></input>
+                    <input className={classes.Inp} type="text" name="start" value={this.state.Startingpoint} placeholder="Enter the Starting Point name" onChange={(event) => this.updateInput(event)}></input>
                     {this.renderSuggestions1()} 
                 </div>
                 <div className={classes.AutoCompleteText}>
