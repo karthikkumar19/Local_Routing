@@ -1,7 +1,10 @@
+
  
  .AutoCompleteText{
      width: 30%;
      float: left;
+     /* position: relative; */
+     background-color: aliceblue;
      margin-left: 20px;
     border: 1px solid gray; 
      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px 1px rgba(0, 0, 0, .18);
@@ -14,6 +17,7 @@
     border:none;
     width: 100%;
     font-size: 14px;
+    
     color:rgba(0, 0, 0, 0.73);
     padding: 10px 5px;
     box-sizing: border-box;
@@ -21,18 +25,23 @@
     /* border: none; */
 }
 
+
 .AutoCompleteText ul{
     list-style-type: none;
     text-align: left;
+    background-color: white;
+
     margin: 0;
     padding: 0;
     border-top: 1px solid grey;
 
 }
 
+
 .AutoCompleteText ul::before{
     content: "";
 }
+
 
 .AutoCompleteText li{
     padding: 10px 5px;
@@ -40,14 +49,27 @@
 
 }
 
+
+/* .Main{
+    position: relative;
+} */
+
+
+
+
 .Button{
     margin-left: 20px;
 }
 
 .Data{
-    margin-top: 50px;
+    position: fixed;
+ left:0px;
+ bottom: 0px;
+ top: 100px;
+ z-index: -1;
 
 }
+
 
 .AutoCompleteText li:hover{
     text-decoration: underline;

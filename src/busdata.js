@@ -145,9 +145,8 @@ if(this.state.data.length > '1'){
        
 
         return(
-            <div  >
+            <div  className={classes.Wrapper} >
                 <h1>Search your Bus</h1>
-                <div>
                 <div className={classes.AutoCompleteText}>
                     <input type="text" name="start" value={this.state.Startingpoint} placeholder="Enter the Starting Point name" onChange={(event) => this.updateInput(event)}></input>
                     {this.renderSuggestions1()} 
@@ -157,11 +156,10 @@ if(this.state.data.length > '1'){
                     {this.renderSuggestions2()} 
                 </div>               
                 <button className={classes.Button} onClick={(event) => this.searchPage(event,"48",this.state.Startingpoint,this.state.Destination)} >Search</button>
-                </div>
-                
-              <div className={classes.Data}>
+                <div className={classes.Data}>
               {name}
-              </div>  
+              </div>    
+             
             </div>
         )
     }
