@@ -110,6 +110,7 @@ export const searchData = (no,start,des) => {
             console.log(page.stopname)
         ));
         console.log(slice);
+        dispatch(fetchDataSuccess(slice));
         }else{
             slice = stop.slice(ind1,ind2);
             console.log(slice);

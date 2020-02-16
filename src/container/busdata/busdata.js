@@ -117,8 +117,8 @@ if(!this.props.loading){
                     placeholder="Enter the Destination name" onChange={(event) => this.updateInput(event)}></input>
                     {this.renderSuggestions2()} 
                 </div>               
-                <button className={classes.Button}
-                 onClick={(event) => this.searchPage(event,"48",this.state.Startingpoint,this.state.Destination)} >Search</button>
+                <i className="fa fa-spinner fa-spin" className={classes.Button}
+                 onClick={(event) => this.searchPage(event,"48",this.state.Startingpoint,this.state.Destination)} >Search</i>
                 </div>
                
                 <div className={classes.Data}>

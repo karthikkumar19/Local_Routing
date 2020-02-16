@@ -6,9 +6,9 @@
 }
 
 
-
 .Main{
     margin-left:  20%;
+    
 }
 
  .AutoCompleteText{
@@ -70,6 +70,10 @@
 }
 
 .Data{
+   
+    background-image: url(busbg3.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
     position: absolute;
     width: 100%;
  left:0px;

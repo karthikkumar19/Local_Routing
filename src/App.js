@@ -45,7 +45,7 @@ render(){
     // );
   
   return(
-    <div className={classes.App}>
+    <div >
     <Layout>
     {routes}
   </Layout>
