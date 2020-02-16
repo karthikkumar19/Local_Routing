@@ -30,8 +30,9 @@ const fetchDataStart = (state) => {
     return updateObject(state,{loading:true});
 }
 const fetchDataSuccess = (state,action) => {
+    console.log(action.busdata);
     return updateObject(state, {
-        data:action.data,
+        data:action.busdata,
         loading:false,
         purchased:false,
         fetched:true
@@ -44,7 +45,7 @@ const fetchDataFail = (state) => {
 
 
 
-const pageReducer = (state = initialState, action) =>{
+const dataReducer = (state = initialState, action) =>{
     switch (action.type){
         case actionTypes.ADD_DATA_INIT:return addDataInit(state);
         case actionTypes.ADD_DATA_START:return addDataStart(state);

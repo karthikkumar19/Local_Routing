@@ -2,8 +2,13 @@ import React, {Component} from 'react';
 import firebase from '../../firebase';
 import classes from './Autocompletetext.module.css';
 import Buses from '../../components/buses/buses';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import * as actions from '../../store/actions/index';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import {connect} from 'react-redux';
 import Input from '../../components/UI/Input/input';
 import Button from '../../components/UI/Button/button';
+import Axios from 'axios';
 
 class busdata extends React.Component{
 
@@ -86,74 +91,76 @@ renderSuggestions2 () {
  searchPage = (event,no,start,des) => {
      console.log(start,des);
      event.preventDefault();
-    var slice="";
-        const ref = firebase.database().ref('buses');
-        ref
-  .orderByChild('no')
-  .equalTo(no)
-  .on('value', function(snapshot) { 
-      var movie = snapshot.val();
-      console.log(movie);
-      let newstate=[];
-      for(let name in movie){
-        //   if(movie[name].stops)
-        let stop = movie[name].names;
-        console.log(stop);
-        let ind1,ind2;
-        for(let name in stop){
-            if(stop[name].stopname === start){
-                 ind1 =name;
-                console.log(name);
-            }else if(stop[name].stopname === des){
-                console.log(name)
-                 ind2 = name ;
-               ind2=  Number(ind2) + 1;
-            }
-        }
-        console.log(ind2);
-        if(ind1>=ind2 ){
-            console.log("greater");
-            let temp = ind1;
-            ind1 = ind2;
-            ind2 = temp;
-            ind1=  Number(ind1) - 1;
-            ind2=  Number(ind2) + 1;
-            console.log(ind1,ind2);
-            slice = stop.slice(ind1,ind2);
-          console.log(slice);
-          slice.sort().reverse();
-          slice.map((page,index) => (
-            console.log(page.stopname)
-        ));
-        console.log(slice);
-        }else{
-            slice = stop.slice(ind1,ind2);
-            console.log(slice);
-            slice.map((page,index) => (
-              console.log(page.stopname)
-          ));
-          console.log(slice);
-        }  
-          }
-        }, error => {
-            console.error(error);
-        })
-        this.setst(slice);
-        // setTimeout( this.setst(), 5000);
-        // setTimeout(this.setst(slice), 8000);     
-           console.log("slice called")
+     this.props.onSearchdata(no,start,des);
+
+//     var slice="";
+//         const ref = firebase.database().ref('buses');
+//         ref
+//   .orderByChild('no')
+//   .equalTo(no)
+//   .on('value', function(snapshot) { 
+//       var movie = snapshot.val();
+//       console.log(movie);
+//       let newstate=[];
+//       for(let name in movie){
+//         //   if(movie[name].stops)
+//         let stop = movie[name].names;
+//         console.log(stop);
+//         let ind1,ind2;
+//         for(let name in stop){
+//             if(stop[name].stopname === start){
+//                  ind1 =name;
+//                 console.log(name);
+//             }else if(stop[name].stopname === des){
+//                 console.log(name)
+//                  ind2 = name ;
+//                ind2=  Number(ind2) + 1;
+//             }
+//         }
+//         console.log(ind2);
+//         if(ind1>=ind2 ){
+//             console.log("greater");
+//             let temp = ind1;
+//             ind1 = ind2;
+//             ind2 = temp;
+//             ind1=  Number(ind1) - 1;
+//             ind2=  Number(ind2) + 1;
+//             console.log(ind1,ind2);
+//             slice = stop.slice(ind1,ind2);
+//           console.log(slice);
+//           slice.sort().reverse();
+//           slice.map((page,index) => (
+//             console.log(page.stopname)
+//         ));
+//         console.log(slice);
+//         }else{
+//             slice = stop.slice(ind1,ind2);
+//             console.log(slice);
+//             slice.map((page,index) => (
+//               console.log(page.stopname)
+//           ));
+//           console.log(slice);
+//         }  
+//           }
+//         }, error => {
+//             console.error(error);
+//         })
+//         this.setst(slice);
+//         // setTimeout( this.setst(), 5000);
+//         // setTimeout(this.setst(slice), 8000);     
+//            console.log("slice called")
     }
 
     render(){
         let name = ''
-if(this.state.data.length > '1'){
-         name =  this.state.data.map((bus,index) => (
+
+         name =  this.props.data.map((bus,index) => (
             <div  >
                 <Buses name={bus} />
                 </div>
                 
         ));
-}
+
 
        
 
@@ -174,7 +181,28 @@ if(this.state.data.length > '1'){
               </div>    
             </div>
         )
+        }
+}
+
+const mapStateToProps = state => {
+    return{
+        data:state.data.data,
+        loading:state.data.loading,
+        fetched:state.data.fetched,
+        // isAuthenticated: state.auth.token !== null
+         // token:state.auth.token,
+        // userId:state.auth.userId
     }
 }
 
-export default busdata;
+const mapDispatchToProps = dispatch => {
+    return{
+        // onFetchData : () => dispatch(actions.fetchPage()),
+        // onAddDataInit : () => dispatch(actions.addPageInit()),
+        // onAscPage : (page) => dispatch(actions.ascPage(page)),
+        // onDscPage : (page) => dispatch(actions.dscPage(page)),
+        onSearchdata : (no,startname,stopname) => dispatch(actions.searchData(no,startname,stopname))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps) (withErrorHandler(busdata,Axios)) ;

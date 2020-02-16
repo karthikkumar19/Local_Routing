@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import axios from '../../axios-orders';
+import axios from '../../axios_orders';
 import firebase from '../../firebase';
 
 
@@ -29,10 +29,10 @@ export const addData = (busData) => {
         dispatch (addDataStart());
         axios.post( '/buses.json', busData )
         .then( response => {
-            dispatch(addPageSuccess(response.data.name, busData));
+            dispatch(addDataSuccess(response.data.name, busData));
         } )
         .catch( error => {
-            dispatch(addPageFail(error));
+            dispatch(addDataFail(error));
         } );
     }
 }
@@ -44,7 +44,8 @@ export const addDataInit = () => {
     };
 };
 
-export const fetchDATASuccess = (data) => {
+export const fetchDataSuccess = (data) => {
+    console.log(data);
     return{
         type:actionTypes.FETCH_DATA_SUCCESS,
         busdata:data
@@ -65,10 +66,11 @@ export const fetchDataStart = () => {
     };
 };
 
-export const searchPage = (no,start,des) => {
+export const searchData = (no,start,des) => {
     return dispatch => {
         var slice="";
         dispatch(fetchDataStart());
+        console.log(no);
         const ref = firebase.database().ref('buses');
         ref
   .orderByChild('no')
@@ -115,12 +117,13 @@ export const searchPage = (no,start,des) => {
               console.log(page.stopname)
           ));
           console.log(slice);
+          dispatch(fetchDataSuccess(slice));
         }  
           }
         }, error => {
             console.error(error);
         })
-        dispatch(fetchDataSuccess(slice));
+        console.log(slice);
            console.log("slice called");
 }
 }

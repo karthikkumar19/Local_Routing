@@ -1,14 +1,14 @@
 // import React, { Component } from "react";
 import * as React from 'react'
-import Addbusdata from './Addbusdata';
+import Addbusdata from './container/addbusdata/Addbusdata';
 import "bootstrap/dist/css/bootstrap.css";
-import Busdata from './busdata';
+import Busdata from './container/busdata/busdata';
 import asyncComponent from './hoc/asyncComponent/asynComponent';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import Layout from './hoc/Layout/Layout';
 
 const asyncAddBus = asyncComponent(() => {
-  return import('./Addbusdata');
+  return import('./container/addbusdata/Addbusdata');
 });
 
 // const asyncEdit = asyncComponent(() => {
