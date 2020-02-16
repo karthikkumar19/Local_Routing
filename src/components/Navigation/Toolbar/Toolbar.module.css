@@ -4,7 +4,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #5E3023;
+    background-image: url(busbg1.jpg);
+    background-size: contain;
     display: flex;
     justify-content: space-between;
     align-items: center;

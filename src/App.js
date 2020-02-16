@@ -6,7 +6,7 @@ import Busdata from './container/busdata/busdata';
 import asyncComponent from './hoc/asyncComponent/asynComponent';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import Layout from './hoc/Layout/Layout';
-
+import classes from '../src/App.module.css';
 const asyncAddBus = asyncComponent(() => {
   return import('./container/addbusdata/Addbusdata');
 });
@@ -45,7 +45,7 @@ render(){
     // );
   
   return(
-    <div>
+    <div className={classes.App}>
     <Layout>
     {routes}
   </Layout>
