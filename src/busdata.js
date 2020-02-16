@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import firebase from './firebase';
 import classes from './Autocompletetext.module.scss';
+import Buses from './components/buses/buses';
 
 class busdata extends React.Component{
 
@@ -118,6 +119,7 @@ renderSuggestions2 () {
             console.log(ind1,ind2);
             slice = stop.slice(ind1,ind2);
           console.log(slice);
+          slice.sort().reverse();
           slice.map((page,index) => (
             console.log(page.stopname)
         ));
@@ -143,16 +145,10 @@ renderSuggestions2 () {
     render(){
         let name = ''
 if(this.state.data.length > '1'){
+
          name =  this.state.data.map((bus,index) => (
             <div  >
-                <h1>{bus.stopname}</h1>
-                {
-                    bus.data.map((data,index) => (
-                        <div>
-                       <h4>Time:- {data.time} BusNo:-{data.busno}</h4>
-                       </div>
-                    ))
-                }
+                <Buses name={bus} />
                 </div>
                 
         ));
