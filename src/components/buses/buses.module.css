@@ -6,6 +6,7 @@
     box-shadow: 0 2px 3px #ccc;
     padding: 10px;
     color: white;
+    /* text-align: center; */
     font-family: 'Oswald', sans-serif;
     margin: 10px auto;
     box-sizing: border-box;
@@ -14,6 +15,8 @@
 background: -webkit-linear-gradient(to right, #EF629F, #EECDA3);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #EF629F, #EECDA3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
+
 
 
 
@@ -37,11 +40,29 @@ background: linear-gradient(to right, #EF629F, #EECDA3); /* W3C, IE 10+/ Edge, F
 
 .busName{
     font-size: 25px;
-    /* text-transform: 'capitalize';
+    text-align: center;
+ text-transform: 'capitalize';
     display: 'inline-block';
     margin: '0 8px';
     border: '1px solid #ccc';
-    padding: '5px'; */
+    padding: '5px'; 
+}
+
+.container{
+    width: 100%;
+    font-size: 20px;
+    /* white-space:nowrap; */
+}
+
+.container div{
+    display: inline-block;  
+    margin-left: 15px;
+    margin-top:5px;
+    border:1px solid white;
+    background: #eee;
+    border-radius: 20px;
+    color: black;
+    padding:10px;
 }
 
 

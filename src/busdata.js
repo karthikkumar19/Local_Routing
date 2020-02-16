@@ -145,7 +145,6 @@ renderSuggestions2 () {
     render(){
         let name = ''
 if(this.state.data.length > '1'){
-
          name =  this.state.data.map((bus,index) => (
             <div  >
                 <Buses name={bus} />
@@ -169,9 +168,8 @@ if(this.state.data.length > '1'){
                 </div>               
                 <button className={classes.Button} onClick={(event) => this.searchPage(event,"48",this.state.Startingpoint,this.state.Destination)} >Search</button>
                 <div className={classes.Data}>
-              {name}
+                {name}
               </div>    
-             
             </div>
         )
     }
