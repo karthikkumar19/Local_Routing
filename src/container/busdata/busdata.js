@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import firebase from './firebase';
+import firebase from '../../firebase';
 import classes from './Autocompletetext.module.css';
-import Buses from './components/buses/buses';
-import Input from './components/UI/Input/input';
-import Button from './components/UI/Button/button';
+import Buses from '../../components/buses/buses';
+import Input from '../../components/UI/Input/input';
+import Button from '../../components/UI/Button/button';
 
 class busdata extends React.Component{
 

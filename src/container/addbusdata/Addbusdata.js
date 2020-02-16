@@ -1,10 +1,10 @@
 import * as React from 'react'
 import update from 'react-addons-update';
-import axios from './axios_orders';
+import axios from '../../axios_orders';
 // import Button from '../Components/UI/Button/button';
 import "bootstrap/dist/css/bootstrap.css";
-import Spinner from './components/UI/Spinner/Spinner';
-import withErrorHandler from './hoc/withErrorHandler/withErrorHandler';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 class Addbusdata extends React.Component{
 
 state={
