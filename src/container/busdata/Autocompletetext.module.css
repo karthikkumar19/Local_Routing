@@ -65,13 +65,14 @@
 
 
 
-.Button{
+.PageviewIcon{
     margin-left: 20px;
+    margin-top: -10px;
 }
 
 .Data{
    
-    background-image: url(busbg3.jpg);
+    /* background-image: url(busbg3.jpg); */
     background-position: center;
     background-repeat: no-repeat;
     position: absolute;

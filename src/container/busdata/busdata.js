@@ -6,6 +6,9 @@ import * as actions from '../../store/actions/index';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import {connect} from 'react-redux';
 import Axios from 'axios';
+import PageviewIcon from '@material-ui/icons/Pageview';
+import SearchIcon from '@material-ui/icons/Search';
+
 
 class busdata extends React.Component{
 
@@ -86,20 +89,26 @@ renderSuggestions2 () {
     console.log(this.state.data.length)
 }
  searchPage = (event,no,start,des) => {
-     console.log(start,des);
-     event.preventDefault();
-     this.props.onSearchdata(no,start,des);
+     if(des !== '' && start !== ''){
+        console.log(start,des);
+        event.preventDefault();
+        this.props.onSearchdata(no,start,des);
+     }
+     else{
+         alert("enter destination");
+     }
     }
 
     render(){
         let name = <Spinner/>
 if(!this.props.loading){
-    name =  this.props.data.map((bus,index) => (
-        <div  >
-            <Buses name={bus} />
-            </div>
-            
-    ));
+    name =  this.props.data.map((bus,index) => {
+        if(index === 0){
+            return(
+<Buses name={bus} /> 
+            )        
+    }
+} )
 
 }
         return(
@@ -116,9 +125,11 @@ if(!this.props.loading){
                     <input name="stop" type="text" value={this.state.Destination} 
                     placeholder="Enter the Destination name" onChange={(event) => this.updateInput(event)}></input>
                     {this.renderSuggestions2()} 
-                </div>               
-                <i className="fa fa-spinner fa-spin" className={classes.Button}
-                 onClick={(event) => this.searchPage(event,"48",this.state.Startingpoint,this.state.Destination)} >Search</i>
+                </div>    
+            
+                <PageviewIcon  style={{ fontSize: 65}} color="primary" className={classes.PageviewIcon}
+                 onClick={(event) => this.searchPage(event,"48",this.state.Startingpoint,this.state.Destination)} >
+                    </PageviewIcon>           
                 </div>
                
                 <div className={classes.Data}>
