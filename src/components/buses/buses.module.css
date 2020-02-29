@@ -1,26 +1,61 @@
 @import url('https://fonts.googleapis.com/css?family=Anton|Oswald:600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Amaranth&display=swap');
 
 .Busdata {
-    width: 80%;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 3px #ccc;
-    padding: 10px;
-    color: rgb(255, 255, 255);
-    /* text-align: center; */
-    font-family: 'Oswald', sans-serif;
-    margin: 10px auto;
-    box-sizing: border-box;
-    border-radius: 20px;
-    background: #c2e59c;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #64b3f4, #c2e59c);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
-    
 }
 
+.jumbo{
+    width: 70%;
+    margin: auto;
+    height: 150px;
+}
 
+.busmain{
+    display:flex;   
+    flex-wrap: wrap; 
 
+}
+
+.cardBuses{
+    margin-left: 15%;
+    font-family: 'Amaranth' ;
+
+}
+
+.listheader{
+    overflow: scroll;
+    height: 400px;
+
+}
+
+.list{
+    background-color: #878787;
+    height: 80px;
+    font-size: 25px;
+}
+
+.list h6{
+    float: right;
+}
+
+.cardtime{
+    width: 100%;
+    margin: 7% 0 0 10%;
+
+}
+.cardtime h6{
+    margin-left: 400px;
+}
+
+.carddistance{
+    width: 100%;
+    margin-left: 10%;
+
+}
+
+.carddistance h6{
+    margin-left: 400px;
+}
 
 
 .ui{
