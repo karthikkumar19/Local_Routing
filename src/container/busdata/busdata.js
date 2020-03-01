@@ -10,7 +10,7 @@ import PageviewIcon from '@material-ui/icons/Pageview';
 import SearchIcon from '@material-ui/icons/Search';
 
 
-class busdata extends React.Component{
+class busdata extends Component{
 
 state={
     data:[],
@@ -116,11 +116,10 @@ if(!this.props.loading){
                 <h1 className={classes.Heading}>Search your Bus</h1>
                 <div className={classes.Main}>
                 <div className={classes.AutoCompleteText}>
-                    <input type="text" name="start" value={this.state.Startingpoint} 
-                    placeholder="Enter the Starting Point name"
-                     onChange={(event) => this.updateInput(event)}></input>
+                    <input name="start" type="text" value={this.state.Startingpoint} 
+                    placeholder="Enter the Starting Point name" onChange={(event) => this.updateInput(event)}></input>
                     {this.renderSuggestions1()} 
-                </div>
+                </div> 
                 <div className={classes.AutoCompleteText}>
                     <input name="stop" type="text" value={this.state.Destination} 
                     placeholder="Enter the Destination name" onChange={(event) => this.updateInput(event)}></input>

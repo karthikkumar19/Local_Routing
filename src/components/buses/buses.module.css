@@ -7,7 +7,15 @@
 .jumbo{
     width: 70%;
     margin: auto;
-    height: 150px;
+    height: 50px;
+    /* color: whitesmoke; */
+    /* background-color: #343a40; */
+    border-radius: 15px;
+}
+
+.cardheader{
+    /* background-color:  #343a40;
+    color: whitesmoke; */
 }
 
 .busmain{
@@ -29,7 +37,7 @@
 }
 
 .list{
-    background-color: #878787;
+    background-color: #A9A9A9;
     height: 80px;
     font-size: 25px;
 }
@@ -54,7 +62,7 @@
 }
 
 .carddistance h6{
-    margin-left: 400px;
+    margin-left: 445px;
 }
 
 

@@ -3,16 +3,13 @@ import update from 'react-addons-update';
 import axios from '../../axios_orders';
 // import Button from '../Components/UI/Button/button';
 import "bootstrap/dist/css/bootstrap.css";
-import {InputGroup,FormControl,Button} from 'react-bootstrap';
-import classes from './Addbusdata.module.css';
+import {Button,InputGroup,FormControl} from 'react-bootstrap';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-class Addbusdata extends React.Component{
+import classes from '../addbusdata/Addbusdata.module.css';
+class Addstopdata extends React.Component{
 
 state={
-    BusNo:'',
-    Starting_Point:'',
-    Destination:'',
     RouteNo:'',
     names:[
      {stopname:"",data:[{ time: '', busno: '' }]
@@ -25,20 +22,10 @@ state={
      
 //input of busname and no
 
-const handleinputs = event =>{
+const handleNo = event =>{
   event.preventDefault();
-  if(event.target.name === "Busno"){
-    this.setState({BusNo:event.target.value});
-  }
-  else if(event.target.name === "Routeno"){
     this.setState({RouteNo:event.target.value});
-  }
-  else if(event.target.name === "Starting"){
-      this.setState({Starting_Point:event.target.value});
-  }
-  else{
-      this.setState({Destination:event.target.value});
-  }
+  
 }
 
     //Submit data method!!
@@ -147,6 +134,7 @@ const handleinputs = event =>{
                   +
                 </button>
               </div></div>
+
               {
                 this.state.names[indexs].data.map((inputField, index) => (
 <React.Fragment key={`${inputField}~${index}`}>
@@ -196,59 +184,23 @@ const handleinputs = event =>{
     });
 return (
 <div className={classes.inputMain}>
-<h1>Add Bus Data</h1>
-<div className={classes.inputTop}>
-  <InputGroup className="mb-3">
+<h1>Add Stop Data</h1>
+<InputGroup className="mb-3">
     <InputGroup.Prepend>
-      <InputGroup.Text id="basic-addon1">Bus-No &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</InputGroup.Text>
+      <InputGroup.Text id="basic-addon1">Route-No &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</InputGroup.Text>
     </InputGroup.Prepend>
-    <FormControl name="Busno"  value={this.state.BusNo}
-    onChange={(event) => handleinputs(event)}
-      placeholder="Enter Bus Number"
-      aria-describedby="basic-addon1"
-    />
-  </InputGroup>
-  <InputGroup className="mb-3">
-    <InputGroup.Prepend>
-      <InputGroup.Text  id="basic-addon1">Route-No &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</InputGroup.Text>
-    </InputGroup.Prepend>
-    <FormControl name="Routeno"  value={this.state.RouteNo}
+    <FormControl name="busno" type="text" value={this.state.RouteNo}
+    onChange={(event) => handleNo(event)}
       placeholder="Enter Route Number"
-      onChange={(event) => handleinputs(event)}
       aria-describedby="basic-addon1"
     />
   </InputGroup>
-  <InputGroup className="mb-3">
-    <InputGroup.Prepend>
-      <InputGroup.Text id="basic-addon1">Starting-Point</InputGroup.Text>
-    </InputGroup.Prepend>
-    <FormControl name="Starting"  value={this.state.Starting_Point}
-      placeholder="Enter Starting Point Name"
-      onChange={(event) => handleinputs(event)}
-      aria-describedby="basic-addon1"
-    />
-  </InputGroup>
-  <InputGroup className="mb-3">
-    <InputGroup.Prepend>
-      <InputGroup.Text id="basic-addon1">Destination &nbsp;&nbsp;&nbsp;&nbsp;</InputGroup.Text>
-    </InputGroup.Prepend>
-    <FormControl name="Destination"  value={this.state.Destination}
-      placeholder="Enter Destination Name"
-      onChange={(event) => handleinputs(event)}
-      aria-describedby="basic-addon1"
-    />
-  </InputGroup>
-  
-</div>
    {name}
-  <div className="submit-button">
-<Button
-variant="success"
+<Button variant="success"
 type="submit"
 onClick={(event) => handleSubmit(event)}>
 Save
-</Button>
-</div>      
+</Button>     
 <pre>
  {JSON.stringify(this.state, null, 2)}
 </pre>
@@ -256,4 +208,4 @@ Save
   )
           }
         }
-        export default Addbusdata;
+        export default Addstopdata;

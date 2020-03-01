@@ -1,14 +1,13 @@
 // import React, { Component } from "react";
 import * as React from 'react'
-import Addbusdata from './container/addbusdata/Addbusdata';
+import {Helmet} from 'react-helmet';
 import "bootstrap/dist/css/bootstrap.css";
 import Busdata from './container/busdata/busdata';
 import asyncComponent from './hoc/asyncComponent/asynComponent';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import Layout from './hoc/Layout/Layout';
-import classes from '../src/App.module.css';
-const asyncAddBus = asyncComponent(() => {
-  return import('./container/addbusdata/Addbusdata');
+const asyncAddData = asyncComponent(() => {
+  return import('./container/AddData');
 });
 
 // const asyncEdit = asyncComponent(() => {
@@ -27,7 +26,7 @@ render(){
     <Switch>
       {/* <Route path="/auth" component={asyncAuth} /> */}
       <Route path="/" exact component={Busdata} />
-      <Route path="/add" exact component={asyncAddBus} />
+      <Route path="/add" exact component={asyncAddData} />
       <Redirect to="/" />
     </Switch>
   );
@@ -46,6 +45,9 @@ render(){
   
   return(
     <div >
+       <Helmet>
+                <style>{'body { background: #5D5F71;  }'}</style>
+            </Helmet>
     <Layout>
     {routes}
   </Layout>
@@ -56,3 +58,4 @@ render(){
 
 
 export default withRouter(App);
+

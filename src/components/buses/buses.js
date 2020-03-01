@@ -32,10 +32,10 @@ axios.get( 'https://localrouting.firebaseio.com/buses.json?orderBy="busno"&equal
 
         return (
             <div className={classes.Busdata}>
-                <div >
-                <Jumbotron className={classes.jumbo} fluid>
+                <div  >
+                <Jumbotron  className={classes.jumbo} fluid>
   <Container>
-    <h1>Searching details comes here!</h1>
+    <h4>Searching details comes here!</h4>
   </Container>
 </Jumbotron>
                 </div>
@@ -65,7 +65,7 @@ axios.get( 'https://localrouting.firebaseio.com/buses.json?orderBy="busno"&equal
                 <div>
                     <div>
                     <Card className={classes.carddistance}>
-  <Card.Header as="h5">Featured</Card.Header>
+  <Card.Header className={classes.cardheader} as="h5">Featured</Card.Header>
   <Card.Body>
     <Card.Title>Card for Distance Calculation</Card.Title>
     <Card.Text>
@@ -80,7 +80,7 @@ axios.get( 'https://localrouting.firebaseio.com/buses.json?orderBy="busno"&equal
                     </div>
       <div>
       <Card className={classes.cardtime}>
-  <Card.Header as="h5">Featured</Card.Header>
+  <Card.Header className={classes.cardheader} as="h5">Featured</Card.Header>
   <Card.Body>
     <Card.Title>Card for Time Calculation</Card.Title>
     <Card.Text>
