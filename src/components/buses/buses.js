@@ -1,6 +1,9 @@
 import React ,{Component} from 'react';
 import classes from './buses.module.css';
 import axios from 'axios';
+import {
+  withRouter
+} from 'react-router-dom'
 import {Card,ListGroup, Jumbotron,Container} from 'react-bootstrap';
 
 
@@ -24,6 +27,8 @@ console.log(no);
 axios.get( 'https://localrouting.firebaseio.com/buses.json?orderBy="busno"&equalTo=48')
 .then( response => {
     console.log(response.data);
+    console.log(this.props);
+    this.props.history.push('/bus');
 } )
 .catch( error => {
     console.log(error);
@@ -55,7 +60,7 @@ axios.get( 'https://localrouting.firebaseio.com/buses.json?orderBy="busno"&equal
             let currenttime = d.getHours();
                 return(
                     <ListGroup.Item onClick={() => getBus(data.busno)}  className={classes.list}> Time:- {data.time} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                     Busno:- {data.busno} <h6>See details</h6></ListGroup.Item>
+                     Busno:- {data.busno} <h6 >See details</h6></ListGroup.Item>
             )})
       }
 </ListGroup>
@@ -105,4 +110,4 @@ axios.get( 'https://localrouting.firebaseio.com/buses.json?orderBy="busno"&equal
     }
 };
 
-export default buses;
+export default withRouter(buses);

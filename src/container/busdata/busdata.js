@@ -8,6 +8,7 @@ import {connect} from 'react-redux';
 import Axios from 'axios';
 import PageviewIcon from '@material-ui/icons/Pageview';
 import SearchIcon from '@material-ui/icons/Search';
+import Busdetails from '../../components/busdetails/busdetails';
 
 
 class busdata extends Component{
@@ -130,7 +131,6 @@ if(!this.props.loading){
                  onClick={(event) => this.searchPage(event,"48",this.state.Startingpoint,this.state.Destination)} >
                     </PageviewIcon>           
                 </div>
-               
                 <div className={classes.Data}>
                 {name}
               </div>    
