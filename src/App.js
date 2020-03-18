@@ -28,7 +28,7 @@ render(){
       {/* <Route path="/auth" component={asyncAuth} /> */}
       <Route path="/" exact component={Busdata} />
       <Route path="/add" exact component={asyncAddData} />
-      <Route path="/bus" exact component={Busdetails} />
+      <Route path="/bus:id" exact component={Busdetails} />
       <Redirect to="/" />
     </Switch>
   );

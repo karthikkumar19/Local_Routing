@@ -128,7 +128,7 @@ if(!this.props.loading){
                 </div>    
             
                 <PageviewIcon  style={{ fontSize: 65}} color="primary" className={classes.PageviewIcon}
-                 onClick={(event) => this.searchPage(event,"48",this.state.Startingpoint,this.state.Destination)} >
+                 onClick={(event) => this.searchPage(event,48,this.state.Startingpoint,this.state.Destination)} >
                     </PageviewIcon>           
                 </div>
                 <div className={classes.Data}>

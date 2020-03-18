@@ -24,15 +24,8 @@ let ui= null
     
 let getBus = (no) => {
 console.log(no);
-axios.get( 'https://localrouting.firebaseio.com/buses.json?orderBy="busno"&equalTo=48')
-.then( response => {
-    console.log(response.data);
-    console.log(this.props);
-    this.props.history.push('/bus');
-} )
-.catch( error => {
-    console.log(error);
-} );
+    this.props.history.push('/bus' + no);
+
 }
 
         return (

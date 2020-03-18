@@ -15,7 +15,7 @@ state={
     Destination:'',
     RouteNo:'',
     names:[
-     {stopname:"",data:[{ time: '', busno: '' }]
+     {stopname:"",data:[{ time: ''}]
     }
   ]
   }
@@ -73,18 +73,12 @@ const handleinputs = event =>{
             { [indexs]: { data: { [index]: { time: { $set: event.target.value } } } } }
         )});
         }
-        else{
-          this.setState({names: update(this.state.names, 
-            { [indexs]: { data: { [index]: { busno: { $set: event.target.value } } } } }
-        )});
-        }
-       
       };
     
       //Pushing Bus data Method!!
       const OnhandleAddFields = () => {
         const values = [...this.state.names];
-        values.push({stopname:"",data:[{ time: '', busno: '' }]
+        values.push({stopname:"",data:[{ time: ''}]
       });
         this.setState({names:values});
       };
@@ -101,7 +95,7 @@ const handleinputs = event =>{
       const handleAddFields = (indexs) => {
         const values = [...this.state.names];
         let value = values[indexs].data;
-        value.push({ time: '', busno: '' });
+        value.push({ time: '' });
 
         this.setState({names:values});
       };
@@ -149,8 +143,9 @@ const handleinputs = event =>{
               </div></div>
               {
                 this.state.names[indexs].data.map((inputField, index) => (
-<React.Fragment key={`${inputField}~${index}`}>
-  <div className="form-group col-sm-6">
+                  
+                    <React.Fragment  key={`${inputField}~${index}`}>
+  <div  className="form-group col-sm-2">
     <label htmlFor="time">Time</label>
     <input
       type="text"
@@ -160,18 +155,8 @@ const handleinputs = event =>{
       value={inputField.time}
       onChange={event => handleInputChange(indexs,index, event)}
     />
-  </div>
-  <div className="form-group col-sm-4">
-    <label htmlFor="fare">Busno</label>
-    <input
-      type="text"
-      className="form-control"
-      id="busno"
-      name="busno"
-      value={inputField.fare}
-      onChange={event => handleInputChange(indexs,index, event)}
-    />
-  </div>
+
+</div>
   <div className="form-group col-sm-2">
     <button
       className="btn btn-link"
@@ -189,6 +174,8 @@ const handleinputs = event =>{
     </button>
   </div>
 </React.Fragment>
+                     
+
 ))}
 <br/>
   </div>
