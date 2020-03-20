@@ -1,0 +1,43 @@
+.main{
+    margin: auto;
+    text-align: center;
+    width: 15%;
+
+}
+
+.jumbo{
+    background-color:  #5D5F71;
+    color: aquamarine;
+}
+.jumbo h5{
+    font-size: 70px;
+}
+
+.liststop{
+    background-color: #A9A9A9;
+    padding:10px;
+    font-size: 25px;
+}
+
+.listheader{
+    overflow: scroll;
+    background-color: #A9A9A9;
+    height: 400px;
+}
+.listheader h2{
+    font-size: 25px;
+}
+
+
+.maindiv{
+    text-align: center;
+}
+
+.businfo{
+    display: inline-block;
+    width: 24rem;
+}
+
+.stopcard{
+    display: inline-block;
+}

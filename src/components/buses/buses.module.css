@@ -7,11 +7,14 @@
 .jumbo{
     width: 70%;
     margin: auto;
-    height: 50px;
-    /* color: whitesmoke; */
+    background-color:#343a40;
+    color: #fff;
+    padding-top: 2em;     /* color: whitesmoke; */
     /* background-color: #343a40; */
     border-radius: 15px;
 }
+
+
 
 .cardheader{
     /* background-color:  #343a40;
@@ -41,6 +44,8 @@
     height: 80px;
     font-size: 25px;
 }
+
+
 
 .list h6{
     float: right;

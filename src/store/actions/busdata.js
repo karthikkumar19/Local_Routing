@@ -44,11 +44,13 @@ export const addDataInit = () => {
     };
 };
 
-export const fetchDataSuccess = (data) => {
-    console.log(data);
+export const fetchDataSuccess = (data,start,des) => {
+    console.log(start);
     return{
         type:actionTypes.FETCH_DATA_SUCCESS,
-        busdata:data
+        busdata:data,
+        start:start,
+        des:des
     };
     
 };
@@ -110,7 +112,8 @@ export const searchData = (no,start,des) => {
             console.log(page.stopname)
         ));
         console.log(slice);
-        dispatch(fetchDataSuccess(slice));
+        console.log(start)
+        dispatch(fetchDataSuccess(slice,start,des));
         }else{
             slice = stop.slice(ind1,ind2);
             console.log(slice);
@@ -118,7 +121,7 @@ export const searchData = (no,start,des) => {
               console.log(page.stopname)
           ));
           console.log(slice);
-          dispatch(fetchDataSuccess(slice));
+          dispatch(fetchDataSuccess(slice,start,des));
         }  
           }
         }, error => {

@@ -1,6 +1,5 @@
 import React ,{Component} from 'react';
 import classes from './buses.module.css';
-import axios from 'axios';
 import {
   withRouter
 } from 'react-router-dom'
@@ -30,13 +29,15 @@ console.log(no);
 
         return (
             <div className={classes.Busdata}>
-                <div  >
+                
                 <Jumbotron  className={classes.jumbo} fluid>
   <Container>
-    <h4>Searching details comes here!</h4>
+    <div><h4 style={{float: "left",marginLeft:"60px"}}>{this.props.start}</h4>
+    {/* <h1 style={{float:"left",margin:"auto"}}>hello</h1> */}
+     <h4 style={{float: "right",marginRight:"60px"}}>{this.props.des}</h4> </div>
   </Container>
 </Jumbotron>
-                </div>
+                
                 
 
                 <br />    

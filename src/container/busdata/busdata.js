@@ -106,7 +106,7 @@ if(!this.props.loading){
     name =  this.props.data.map((bus,index) => {
         if(index === 0){
             return(
-<Buses name={bus} /> 
+<Buses name={bus} start={this.props.Startingpoint} des={this.props.Destination} /> 
             )        
     }
 } )
@@ -144,6 +144,8 @@ const mapStateToProps = state => {
         data:state.data.data,
         loading:state.data.loading,
         fetched:state.data.fetched,
+        Startingpoint:state.data.Startingpoint,
+        Destination:state.data.Destination
         // isAuthenticated: state.auth.token !== null
          // token:state.auth.token,
         // userId:state.auth.userId

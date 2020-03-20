@@ -1,6 +1,10 @@
 import React,{Component} from 'react';
 import axios from 'axios';
 import Spinner from '../UI/Spinner/Spinner';
+import classes from './busdetails.module.css';
+import Busdetail from './busdetail/busdetail';
+import {withRouter} from 'react-router-dom';
+
 class busdetails extends Component  {
 state={
     loading:true,
@@ -19,9 +23,11 @@ componentDidMount(){
             ...response.data[key],
             id:key
         });
-        console.log(key);
+        console.log(fetcheddata[0].names);
+       
     }
     this.setState({data:fetcheddata,loading:false});
+    console.log(this.state.data);
 } )
 .catch( error => {
     console.log(error);
@@ -31,21 +37,16 @@ componentDidMount(){
     render(){
         let name = <Spinner/>
         if(!this.state.loading){
-           name = this.state.data.map(data => {
-               console.log(data)
-                return(
-                    <div>
-                    <h2>{data.BusName}</h2>
-                    <h2>{data.busno}</h2>
-                               </div>
-                )       
-            })
+            name =
+<Busdetail data={this.state.data} />
         }
        
         return(
             <div>
-                <h1>this page reserved for bus details</h1>
+                
                 {name}
+            
+               
             </div>
         )
     }
@@ -53,4 +54,4 @@ componentDidMount(){
 }
 
 
-export default busdetails;
+export default withRouter(busdetails);

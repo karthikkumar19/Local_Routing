@@ -1,0 +1,16 @@
+.liststop{
+    background-color: #A9A9A9;
+    padding:10px;
+    font-size: 25px;
+}
+
+.listheader{
+    overflow: scroll;
+    height: 400px;
+
+}
+
+.stopcard{
+    float: right;
+    margin-right:70px;
+}

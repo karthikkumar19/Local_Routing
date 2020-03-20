@@ -31,8 +31,11 @@ const fetchDataStart = (state) => {
 }
 const fetchDataSuccess = (state,action) => {
     console.log(action.busdata);
+    console.log(action.start)
     return updateObject(state, {
         data:action.busdata,
+        Startingpoint:action.start,
+        Destination:action.des,
         loading:false,
         purchased:false,
         fetched:true
