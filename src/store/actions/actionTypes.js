@@ -10,4 +10,15 @@ export const FETCH_DATA_FAIL = 'FETCH_DATA_FAIL';
 export const SEARCH_DATA = 'SEARCH_DATA';
 
 
+export const AUTH_START = 'AUTH_START';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAIL = 'AUTH_FAIL';
+export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+
+export const FETCH_BUS_START = 'FETCH_BUS_START';
+export const FETCH_BUS_SUCCESS = 'FETCH_BUS_SUCCESS';
+export const FETCH_BUS_FAIL = 'FETCH_BUS_FAIL';
+export const FETCH_BUS_DATA ='FETCH_BUS_DATA';
+
+
 export const SET_AUTH_REDIRECT_PATH = 'SET_AUTH_REDIRECT_PATH';

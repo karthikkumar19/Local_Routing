@@ -1,9 +1,11 @@
 import React,{Component} from 'react';
 import axios from 'axios';
 import Spinner from '../UI/Spinner/Spinner';
+import * as actions from '../../store/actions/index';
 import classes from './busdetails.module.css';
+import {connect} from 'react-redux';
+import withErrorHanlder from '../../hoc/withErrorHandler/withErrorHandler';
 import Busdetail from './busdetail/busdetail';
-import {withRouter} from 'react-router-dom';
 
 class busdetails extends Component  {
 state={
@@ -13,32 +15,15 @@ state={
 
 componentDidMount(){
     console.log(this.props.match.params.id);
-    axios.get( 'https://localrouting.firebaseio.com/buses.json?orderBy="busno"&equalTo=48')
-.then( response => {
-    console.log(response.data);
-    console.log(response.data.Busname);
-    const fetcheddata = [];
-    for(let key in response.data){
-        fetcheddata.push({
-            ...response.data[key],
-            id:key
-        });
-        console.log(fetcheddata[0].names);
-       
-    }
-    this.setState({data:fetcheddata,loading:false});
-    console.log(this.state.data);
-} )
-.catch( error => {
-    console.log(error);
-} );
+    this.props.onFetchBusDetail(this.props.match.params.id);
+ 
 }
 
     render(){
         let name = <Spinner/>
-        if(!this.state.loading){
+        if(!this.props.loading){
             name =
-<Busdetail data={this.state.data} />
+<Busdetail data={this.props.data} />
         }
        
         return(
@@ -52,6 +37,22 @@ componentDidMount(){
     }
     
 }
+const mapStateToProps = state => {
+    return{
+        data:state.detail.data,
+        loading:state.detail.loading,
+        fetched:state.detail.fetched,
+        // isAuthenticated: state.auth.token !== null
+         // token:state.auth.token,
+        // userId:state.auth.userId
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return{
+        onFetchBusDetail : (no) => dispatch(actions.fetchBusDetail(no))
+    }
+}
 
 
-export default withRouter(busdetails);
+export default connect(mapStateToProps,mapDispatchToProps) (withErrorHanlder(busdetails,axios));

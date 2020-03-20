@@ -1,6 +1,9 @@
 export{
     addData,
     addDataInit,
-    searchData
+    searchData,
     } from './busdata';
     
+export {
+    fetchBusDetail
+} from './busdetails';

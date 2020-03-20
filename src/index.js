@@ -9,10 +9,12 @@ import thunk from 'redux-thunk';
 import * as serviceWorker from './serviceWorker';
 import 'font-awesome/css/font-awesome.min.css';
 import dataReducer from './store/reducers/data';
+import detailReducer from './store/reducers/busdetails';
 
 const composeEnhancers = (process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null) || compose;
 const rootReducer = combineReducers({
     data : dataReducer,
+    detail: detailReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(

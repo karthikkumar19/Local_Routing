@@ -7,8 +7,6 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import {connect} from 'react-redux';
 import Axios from 'axios';
 import PageviewIcon from '@material-ui/icons/Pageview';
-import SearchIcon from '@material-ui/icons/Search';
-import Busdetails from '../../components/busdetails/busdetails';
 
 
 class busdata extends Component{
@@ -20,9 +18,6 @@ state={
     suggestions1:[],suggestions2:[]
 }
 items = ['Periyar','Anagar','Pykara','Tpk'];
-// componentDidMount(event){
-//     this.searchPage(event,"48","","");
-// }
 
 updateInput(event){
     let value = event.target.value;
@@ -85,9 +80,7 @@ renderSuggestions2 () {
 
  setst = (data) => {
     this.setState({data:data});
-    console.log(this.state.Destination);
-    console.log(this.state.data);
-    console.log(this.state.data.length)
+   
 }
  searchPage = (event,no,start,des) => {
      if(des !== '' && start !== ''){
@@ -128,7 +121,7 @@ if(!this.props.loading){
                 </div>    
             
                 <PageviewIcon  style={{ fontSize: 65}} color="primary" className={classes.PageviewIcon}
-                 onClick={(event) => this.searchPage(event,48,this.state.Startingpoint,this.state.Destination)} >
+                 onClick={(event) => this.searchPage(event,"48AD",this.state.Startingpoint,this.state.Destination)} >
                     </PageviewIcon>           
                 </div>
                 <div className={classes.Data}>
