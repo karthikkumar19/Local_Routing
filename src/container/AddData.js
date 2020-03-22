@@ -9,7 +9,6 @@ class AddData extends Component{
     componentDidMount(){
         console.log(this.props.isAuthenticated);
         if(!this.props.isAuthenticated){
-        
             this.props.history.push('/auth');
         }
     }
